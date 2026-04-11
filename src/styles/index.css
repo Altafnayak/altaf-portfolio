@@ -1,0 +1,245 @@
+/* 
+  High-End Professional Portfolio Design System - Refined Pro Edition
+  Focus: Elite SaaS/Dev Landing Page Aesthetic
+*/
+
+:root {
+  --primary: #38bdf8;         /* Electric Blue / Cyan */
+  --primary-glow: rgba(56, 189, 248, 0.4);
+  --bg: #030712;             /* Pure Professional Dark Navy */
+  --surface: rgba(15, 23, 42, 0.6); /* Translucent Navy */
+  --text-main: #f9fafb;      /* Almost White */
+  --text-muted: #94a3b8;     /* Slate Gray */
+  --accent-glow: radial-gradient(circle at 50% 50%, rgba(56, 189, 248, 0.15), transparent 80%);
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Inter', sans-serif;
+  --transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --border: rgba(255, 255, 255, 0.05);
+  --glass: blur(20px) saturate(180%);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  line-height: 1.6;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* 
+   Advanced Professional Background Layering
+   Base -> Mesh Glows -> Noise -> Grid
+*/
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: 
+    radial-gradient(circle at 0% 0%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 100% 0%, rgba(168, 85, 247, 0.05) 0%, transparent 40%),
+    radial-gradient(circle at 100% 100%, rgba(56, 189, 248, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 0% 100%, rgba(168, 85, 247, 0.05) 0%, transparent 40%);
+  pointer-events: none;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background-image: 
+    linear-gradient(var(--border) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border) 1px, transparent 1px);
+  background-size: 60px 60px;
+  mask-image: radial-gradient(ellipse at center, black, transparent 80%);
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Noise Texture Overlays */
+.noise-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  pointer-events: none;
+  opacity: 0.03;
+  background-image: url('https://grainy-gradients.vercel.app/noise.svg');
+  filter: contrast(150%) brightness(100%);
+}
+
+/* Section Layouts */
+.section {
+  padding: 140px 10%;
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  opacity: 0;
+  transform: translateY(15px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.section.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+h2 {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: var(--primary);
+  margin-bottom: 4rem;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+h2::after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: linear-gradient(to right, var(--border), transparent);
+}
+
+/* Pro Components */
+.glass-card {
+  background: var(--surface);
+  backdrop-filter: var(--glass);
+  -webkit-backdrop-filter: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 2.5rem;
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, transparent 100%);
+  pointer-events: none;
+}
+
+.glass-card:hover {
+  border-color: rgba(56, 189, 248, 0.3);
+  box-shadow: 
+    0 20px 50px -15px rgba(0, 0, 0, 0.8),
+    0 0 1px 1px rgba(56, 189, 248, 0.1);
+  transform: translateY(-8px);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px 32px;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-radius: 12px;
+  transition: var(--transition);
+  cursor: pointer;
+  gap: 12px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: #030712;
+  border: 1px solid var(--primary);
+  box-shadow: 0 4px 20px rgba(56, 189, 248, 0.2);
+}
+
+.btn-primary:hover {
+  background: #0ea5e9;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(56, 189, 248, 0.3);
+}
+
+.btn-secondary {
+  border: 1px solid var(--border);
+  color: var(--text-main);
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.btn-secondary:hover {
+  border-color: var(--primary);
+  background: rgba(56, 189, 248, 0.05);
+  transform: translateY(-2px);
+}
+
+.pill-tag {
+  background: rgba(56, 189, 248, 0.05);
+  color: var(--primary);
+  padding: 8px 16px;
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  text-transform: uppercase;
+}
+
+/* Typography Helpers */
+.title-large {
+  font-family: var(--font-heading);
+  font-size: 5rem;
+  font-weight: 800;
+  line-height: 0.95;
+  color: var(--text-main);
+  margin-bottom: 1.5rem;
+  letter-spacing: -3px;
+}
+
+.subtitle-medium {
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+  color: var(--primary);
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: #1f2937;
+  border-radius: 50px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* Responsive Fixes */
+@media (max-width: 1024px) {
+  .title-large { font-size: 4rem; letter-spacing: -2px; }
+  .section { padding: 100px 5%; }
+}
+
+@media (max-width: 768px) {
+  .title-large { font-size: 3rem; letter-spacing: -1px; }
+  .section { padding: 80px 24px; }
+}
